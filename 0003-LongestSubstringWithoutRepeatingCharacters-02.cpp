@@ -34,9 +34,9 @@ public:
 };
 
 int main(){
-    Solution sol;
-    string s{"pwwkew"};
-    printf("%d",sol.lengthOfLongestSubstring(s));
+    Solution s;
+    string str{"pwwkew"};
+    printf("%d", s.lengthOfLongestSubstring(str));
 
     return 0;
 }

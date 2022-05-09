@@ -2,7 +2,6 @@
 // Created by raner on 2021/12/12.
 //
 #include <cstdio>
-#include <cstdlib>
 #include <vector>
 
 struct ListNode {
@@ -57,18 +56,32 @@ public:
     }
 };
 
+//ListNode* Listize(std::vector<int> num){
+//    ListNode *l = new ListNode(), *pre = l;
+//    for (int i : num) {
+//        ListNode *p = new ListNode(i);
+//        pre -> next = p;
+//        pre = pre -> next;
+//    }
+//    pre = l;
+//    l = l -> next;
+//    free(pre);
+//    return l;
+//}
+
 ListNode* Listize(std::vector<int> num){
-    ListNode *l = new ListNode(), *pre = l;
-    for (int i : num) {
-        ListNode *p = new ListNode(i);
-        pre -> next = p;
-        pre = pre -> next;
+    ListNode *l {nullptr};
+    for (int i {int(num.size() - 1)}; i >= 0; --i) {
+        l = new ListNode(num[i], l);
     }
-    pre = l;
-    l = l -> next;
-    free(pre);
     return l;
 }
+
+// 在C++20中大概可以有以下写法，但是leetcode只支持C++14
+// 所以头插法只能使用普通for循环完成
+//for (auto& x : reverse(range)) {
+//    foo(x);
+//}
 
 void PrintList(ListNode* l) {
     while (l != nullptr) {

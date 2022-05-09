@@ -60,8 +60,8 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         vector<int> indexes;
-        for(auto it = nums.begin(); it != nums.end(); ++it){
-            for(auto jt = it + 1; jt != nums.end(); ++jt){
+        for(auto it {nums.begin()}; it != nums.end(); ++it){
+            for(auto jt {it + 1}; jt != nums.end(); ++jt){
                 if (*it + *jt == target){
                     indexes.push_back(it - nums.begin());
                     indexes.push_back(jt - nums.begin());
@@ -91,7 +91,7 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int, int> index;
-        for (int i = 0; i < nums.size(); ++i) {
+        for (int i {0}; i < nums.size(); ++i) {
             if (index.find(target - nums[i]) != index.end())
                 return {index[target - nums[i]], i};
             else

@@ -12,11 +12,11 @@ struct ListNode{
     ListNode() : val(0), next(nullptr) {}
     // 几乎没有next和val只知其一的情况，除了在初始化存储某种信息的头节点时
     // 如 ListNode *l {new ListNode(size)};
-    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int val) : val(val), next(nullptr) {}
     // 但是 ListNode *l {new ListNode(nullptr)}; 和 ListNode *l {new ListNode()}; 效果是一样的
     // 所以如下构造函数更加“没用”，这里按照LeetCode的方式只给出三种构造函数
     // ListNode(ListNode *next) : val(0), next(next) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
+    ListNode(int val, ListNode *next) : val(val), next(next) {}
 };
 
 ListNode* ListizeAtHead(const vector<int> &v = {}) {

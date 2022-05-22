@@ -24,9 +24,10 @@ ListNode* ListizeAtHead(const vector<int> &v = {}) {
 
     // 头插法创建链表并保持顺序
     for (int i {int(v.size()) - 1}; i >= 0; --i) {
+        // 不使用Insert()的写法
 //        l->next = new ListNode(v[i], l->next);
         // 使用Insert()的写法
-        void Insert(ListNode* l, int val);
+        void Insert(ListNode *l, int val);
         Insert(l, v[i]);
     }
     // CPP20写法，需要 #include <ranges>，现在还没办法使用 - 20220509
@@ -60,7 +61,7 @@ ListNode* ListizeAtTail(const vector<int> &v = {}) {
     return l;
 }
 
-void PrintList(ListNode* l) {
+void PrintList(ListNode *l) {
     printf("l: ");
     while (l->next != nullptr) {
         printf("%d ", l->next->val);
@@ -69,22 +70,44 @@ void PrintList(ListNode* l) {
     printf("\n");
 }
 
-bool IsEmpty(ListNode* l) {
+bool IsEmpty(ListNode *l) {
     if (l->next == nullptr) return true;
     else return false;
 }
 
-void PrintEmpty(ListNode* l) {
+void PrintEmpty(ListNode *l) {
     if (IsEmpty(l)) printf("Empty\n");
     else printf("Not empty\n");
 }
 
-void Insert(ListNode* l, int val) {
+void Insert(ListNode *l, int val) {
     // 头插一个值为val的节点
     l->next = new ListNode(val, l->next);
 }
 
-ListNode* Search(ListNode* l, int key) {
+void InsertBefore(ListNode *l, int val, ListNode *pos = nullptr) {
+    // 在指定节点前插入一个新元素，pos为空时头插，最坏线性复杂度
+    if (pos == nullptr) {
+        Insert(l, val);
+    }
+    while (l->next != nullptr) {
+        if (l->next == pos) {
+            l->next = new ListNode(val, l->next);
+        } else {
+            l = l->next;
+        }
+    }
+}
+
+void InsertAfter(ListNode *l, int val, ListNode *pos = nullptr) {
+    // 在指定节点后插入一个新元素，pos为空时头插，常数复杂度
+    if (pos == nullptr) {
+        Insert(l, val);
+    }
+    pos->next = new ListNode(val, pos->next);
+}
+
+ListNode* Search(ListNode *l, int key) {
     while (l->next != nullptr && l->next->val != key) {
         l = l->next;
     }
@@ -98,7 +121,7 @@ void PrintSearch(ListNode*l, int key) {
     else printf("Key %d not found.\n", key);
   }
 
-void Delete(ListNode* l, ListNode* p) {
+void Delete(ListNode *l, ListNode *p) {
     // 删除p指向的节点
     if (p == nullptr) return;  // 与Search()连用时没找到则不删除，否则会报错
     while (l->next != p) {
@@ -124,9 +147,9 @@ int main() {
     PrintList(l);
     Delete(l, Search(l, 1));
     PrintList(l);
-    Delete(l, Search(l, 5));
+    Insert(l, 1);
     PrintList(l);
-    Delete(l, Search(l, 2));
+    Delete(l, Search(l, 5));
     PrintList(l);
     Delete(l, Search(l, 4));
     PrintList(l);

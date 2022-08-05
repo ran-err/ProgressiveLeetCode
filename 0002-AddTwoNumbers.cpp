@@ -71,7 +71,7 @@ public:
 
 ListNode* Listize(std::vector<int> num){
     ListNode *l {nullptr};
-    for (int i {int(num.size() - 1)}; i >= 0; --i) {
+    for (int i {int(num.size()) - 1}; i >= 0; --i) {
         l = new ListNode(num[i], l);
     }
     return l;

@@ -9,7 +9,7 @@ using namespace std;
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        if (s.size() == 0) {
+        if (int(s.size()) == 0) {
             return 0;
         }
         else {
@@ -17,7 +17,7 @@ public:
             int maxLength{1};
             unordered_set<char> buffer; // int will work OK
             int i{0}, j{0};
-            while (j != s.size()) {
+            while (j != int(s.size())) {
                 if (buffer.find(s[j]) == buffer.end()) {
                     // not repeat
                     buffer.insert(s[j]);

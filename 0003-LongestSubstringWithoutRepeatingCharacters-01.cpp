@@ -9,23 +9,23 @@ using namespace std;
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        if (s.size() == 0) {
+        if (int(s.size()) == 0) {
             return 0;
         }
         else {
             // length = j - i + 1
             int maxLength{1};
-            for (int i = 0; i < s.size(); ++i) {
-                for (int j = i; j < s.size(); ++j) {
+            for (int i = 0; i < int(s.size()); ++i) {
+                for (int j = i; j < int(s.size()); ++j) {
                     unordered_set<char> buffer; // int will work OK
                     for (int k = i; k <= j; ++k) {
                         buffer.insert(s[k]);
                     }
-                    if (buffer.size() < j - i + 1) {
+                    if (int(buffer.size()) < j - i + 1) {
                         break; // longer substring will not satisfy the condition
                     }
                     else {
-                        if (buffer.size() > maxLength) maxLength = buffer.size();
+                        if (int(buffer.size()) > maxLength) maxLength = int(buffer.size());
                         else ;
                     }
                 }

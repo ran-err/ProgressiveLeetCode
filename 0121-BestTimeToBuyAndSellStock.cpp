@@ -26,29 +26,31 @@ private:
         int right_max = maxp(variations, mid + 1, right);
 
         int sum {0};
-        int left_part {variations[mid]};
-        for (int i {mid - 1}; i >= left; --i) {
+        int left_part {numeric_limits<int>::lowest()};
+        for (int i {mid}; i >= left; --i) {
             sum += variations[i];
             if (sum > left_part) left_part = sum;
         }  // error caused by lacking unit test
 
         sum = 0;
-        int right_part {variations[mid + 1]};
-        for (int i {mid + 2}; i <= right; ++i) {
+        int right_part {numeric_limits<int>::lowest()};
+        for (int i {mid + 1}; i <= right; ++i) {
             sum += variations[i];
             if (sum > right_part) right_part = sum;
         }
 
         int cross_max = left_part + right_part;
 
-        if (left_max > right_max && left_max > cross_max) return left_max;
-        else if (right_max > left_max && right_max > cross_max) return right_max;
+        if (left_max >= right_max && left_max >= cross_max) return left_max;
+        else if (right_max >= left_max && right_max >= cross_max) return right_max;
         else return cross_max;
+        // error caused by forgotten classic pattern
     }
 };
 
 int main() {
-    vector<int> a {7,1,5,3,6,4};
+    //vector<int> a {7,1,5,3,6,4};
+    vector<int> a {7,6,4,3,1};
     Solution s;
     cout << s.maxProfit(a);
 
